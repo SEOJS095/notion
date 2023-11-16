@@ -20,11 +20,21 @@ body{
   letter-spacing: 5px;
 }
 
-.days, .hours, .minutes, .seconds {
+.years, .months, .days, .hours {
   display: inline-block;
   padding: 20px;
   width: 100px;
   border-radius: 5px;
+}
+
+.years {
+  background: #eeeeee;
+  color: #183059;
+}
+
+.months {
+  background: #eeeeee;
+  color: #183059;
 }
 
 .days {
@@ -33,16 +43,6 @@ body{
 }
 
 .hours {
-  background: #eeeeee;
-  color: #183059;
-}
-
-.minutes {
-  background: #eeeeee;
-  color: #183059;
-}
-
-.seconds {
   background: #eeeeee;
   color: #183059;
 }
@@ -91,14 +91,14 @@ body{
     
 <div id="timer">
 
-    <div class="days"> 
-        <div id="days" class="numbers "> </div>days</div> 
-      <div class="hours"> 
-        <div  id="hours" class="numbers"> </div>hours</div> 
-      <div class="minutes"> 
-        <div  id="minutes" class="numbers"> </div>minutes</div> 
-      <div   class="seconds"> 
-        <div id="seconds" class="numbers"> </div>seconds</div> 
+    <div class="years"> 
+        <div id="years" class="numbers "> </div>years</div> 
+      <div class="months"> 
+        <div  id="months" class="numbers"> </div>months</div> 
+      <div class="days"> 
+        <div  id="days" class="numbers"> </div>days</div> 
+      <div   class="hours"> 
+        <div id="hours" class="numbers"> </div>hours</div> 
       </div>
 
 </div>
@@ -119,16 +119,16 @@ let timer = setInterval(function() {
   const diff = today - myDate;
 
   // math
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let years = Math.floor(diff / (1000 * 60 * 60 * 24) / 365);
+  let months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+  let days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
   let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
   // display
+  document.getElementById("years").innerHTML=years
+  document.getElementById("months").innerHTML=months
   document.getElementById("days").innerHTML=days
   document.getElementById("hours").innerHTML=hours
-  document.getElementById("minutes").innerHTML=minutes
-  document.getElementById("seconds").innerHTML=seconds
 
 
 
